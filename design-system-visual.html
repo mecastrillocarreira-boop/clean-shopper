@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean Shopper — Visual Style Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary-50: #f0f9f4; --primary-100: #d9f0e5; --primary-200: #b3e0cb;
+      --primary-300: #7fc9a7; --primary-400: #4aad82; --primary-500: #2D6A4F;
+      --primary-600: #245a42; --primary-700: #1c4835; --primary-800: #133628; --primary-900: #0a2419;
+
+      --secondary-50: #fff4ef; --secondary-100: #ffe5d6; --secondary-200: #ffcbac;
+      --secondary-300: #ffa878; --secondary-400: #ff8550; --secondary-500: #FF6B35;
+      --secondary-600: #e55520; --secondary-700: #c0421a; --secondary-800: #8f3013; --secondary-900: #5c1e0b;
+
+      --accent-50: #f7f3fe; --accent-100: #ede5fc; --accent-200: #d9c9f9;
+      --accent-300: #c0a8f4; --accent-400: #a882ee; --accent-500: #9063E8;
+      --accent-600: #7548cc; --accent-700: #5a35a8; --accent-800: #3f247a; --accent-900: #25144d;
+
+      --neutral-0: #FFFFFF; --neutral-50: #F9FAFB; --neutral-100: #F3F4F6;
+      --neutral-200: #E5E7EB; --neutral-300: #D1D5DB; --neutral-400: #9CA3AF;
+      --neutral-500: #6B7280; --neutral-600: #4B5563; --neutral-700: #374151;
+      --neutral-800: #1F2937; --neutral-900: #111827;
+
+      --success-100: #DCFCE7; --success-500: #22C55E;
+      --warning-100: #FEF3C7; --warning-500: #F59E0B;
+      --error-100: #FEE2E2;   --error-500: #EF4444;
+      --info-100: #DBEAFE;    --info-500: #3B82F6;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--neutral-50);
+      color: var(--neutral-800);
+      padding: 64px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 { font-size: 48px; font-weight: 700; line-height: 52px; color: var(--neutral-900); margin-bottom: 8px; }
+    h2 { font-size: 24px; font-weight: 600; color: var(--neutral-900); margin: 64px 0 24px; border-bottom: 1px solid var(--neutral-200); padding-bottom: 12px; }
+    h3 { font-size: 14px; font-weight: 600; color: var(--neutral-500); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+    p.lead { font-size: 18px; font-weight: 400; color: var(--neutral-500); margin-top: 4px; }
+
+    /* Color Grid */
+    .color-group { margin-bottom: 40px; }
+    .swatch-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .swatch {
+      display: flex; flex-direction: column; align-items: center;
+      width: 96px;
+    }
+    .swatch-block {
+      width: 96px; height: 64px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 6px;
+    }
+    .swatch-label { font-size: 11px; font-weight: 500; color: var(--neutral-500); }
+    .swatch-hex { font-size: 11px; color: var(--neutral-400); }
+
+    /* Typography */
+    .type-row {
+      display: flex; align-items: baseline; gap: 24px;
+      padding: 20px 0; border-bottom: 1px solid var(--neutral-100);
+    }
+    .type-meta { width: 180px; flex-shrink: 0; font-size: 12px; color: var(--neutral-400); line-height: 1.6; }
+    .type-meta strong { display: block; color: var(--neutral-600); font-weight: 500; margin-bottom: 2px; }
+
+    /* Spacing */
+    .spacing-grid { display: flex; flex-direction: column; gap: 16px; }
+    .spacing-row { display: flex; align-items: center; gap: 24px; }
+    .spacing-block { background: var(--primary-200); border-radius: 4px; height: 24px; flex-shrink: 0; }
+    .spacing-meta { font-size: 13px; color: var(--neutral-500); }
+    .spacing-meta strong { color: var(--neutral-700); font-weight: 500; margin-right: 8px; }
+
+    /* Radius */
+    .radius-grid { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-end; }
+    .radius-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .radius-block {
+      width: 80px; height: 80px;
+      background: var(--primary-100);
+      border: 2px solid var(--primary-300);
+    }
+    .radius-label { font-size: 12px; color: var(--neutral-500); text-align: center; }
+    .radius-label strong { display: block; color: var(--neutral-700); font-weight: 600; }
+
+    /* Shadows */
+    .shadow-grid { display: flex; gap: 32px; flex-wrap: wrap; }
+    .shadow-item { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .shadow-block {
+      width: 120px; height: 80px;
+      background: white;
+      border-radius: 12px;
+    }
+    .shadow-label { font-size: 12px; color: var(--neutral-500); text-align: center; }
+    .shadow-label strong { display: block; color: var(--neutral-700); font-weight: 600; }
+
+    /* Buttons */
+    .component-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-primary { background: var(--primary-500); color: white; }
+    .btn-secondary { background: var(--secondary-500); color: white; }
+    .btn-accent { background: var(--accent-500); color: white; }
+    .btn-outline { background: transparent; color: var(--primary-500); border: 2px solid var(--primary-500); }
+    .btn-ghost { background: var(--neutral-100); color: var(--neutral-700); }
+
+    /* Pills & Badges */
+    .pill {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 9999px;
+      display: inline-block;
+    }
+
+    /* Semantic Chips */
+    .chip {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px; font-weight: 500;
+      padding: 8px 14px; border-radius: 8px;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .chip-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  </style>
+</head>
+<body>
+
+  <h1>Clean Shopper</h1>
+  <p class="lead">Visual Style Guide — v1.0 · 2026-04-06</p>
+
+  <!-- COLORS -->
+  <h2>Color System</h2>
+
+  <div class="color-group">
+    <h3>Primary — Forest Green</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-50)"></div><span class="swatch-label">primary-50</span><span class="swatch-hex">#f0f9f4</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-100)"></div><span class="swatch-label">primary-100</span><span class="swatch-hex">#d9f0e5</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-200)"></div><span class="swatch-label">primary-200</span><span class="swatch-hex">#b3e0cb</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-300)"></div><span class="swatch-label">primary-300</span><span class="swatch-hex">#7fc9a7</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-400)"></div><span class="swatch-label">primary-400</span><span class="swatch-hex">#4aad82</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-500); box-shadow: 0 0 0 3px #2D6A4F44;"></div><span class="swatch-label" style="color:var(--primary-600);font-weight:700">primary-500 ★</span><span class="swatch-hex">#2D6A4F</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-600)"></div><span class="swatch-label">primary-600</span><span class="swatch-hex">#245a42</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-700)"></div><span class="swatch-label">primary-700</span><span class="swatch-hex">#1c4835</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-800)"></div><span class="swatch-label">primary-800</span><span class="swatch-hex">#133628</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--primary-900)"></div><span class="swatch-label">primary-900</span><span class="swatch-hex">#0a2419</span></div>
+    </div>
+  </div>
+
+  <div class="color-group">
+    <h3>Secondary — Electric Tangerine</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-50)"></div><span class="swatch-label">secondary-50</span><span class="swatch-hex">#fff4ef</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-100)"></div><span class="swatch-label">secondary-100</span><span class="swatch-hex">#ffe5d6</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-200)"></div><span class="swatch-label">secondary-200</span><span class="swatch-hex">#ffcbac</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-300)"></div><span class="swatch-label">secondary-300</span><span class="swatch-hex">#ffa878</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-400)"></div><span class="swatch-label">secondary-400</span><span class="swatch-hex">#ff8550</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-500); box-shadow: 0 0 0 3px #FF6B3544;"></div><span class="swatch-label" style="color:var(--secondary-600);font-weight:700">secondary-500 ★</span><span class="swatch-hex">#FF6B35</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-600)"></div><span class="swatch-label">secondary-600</span><span class="swatch-hex">#e55520</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-700)"></div><span class="swatch-label">secondary-700</span><span class="swatch-hex">#c0421a</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-800)"></div><span class="swatch-label">secondary-800</span><span class="swatch-hex">#8f3013</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--secondary-900)"></div><span class="swatch-label">secondary-900</span><span class="swatch-hex">#5c1e0b</span></div>
+    </div>
+  </div>
+
+  <div class="color-group">
+    <h3>Accent — Soft Lilac</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-50)"></div><span class="swatch-label">accent-50</span><span class="swatch-hex">#f7f3fe</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-100)"></div><span class="swatch-label">accent-100</span><span class="swatch-hex">#ede5fc</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-200)"></div><span class="swatch-label">accent-200</span><span class="swatch-hex">#d9c9f9</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-300)"></div><span class="swatch-label">accent-300</span><span class="swatch-hex">#c0a8f4</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-400)"></div><span class="swatch-label">accent-400</span><span class="swatch-hex">#a882ee</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-500); box-shadow: 0 0 0 3px #9063E844;"></div><span class="swatch-label" style="color:var(--accent-600);font-weight:700">accent-500 ★</span><span class="swatch-hex">#9063E8</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-600)"></div><span class="swatch-label">accent-600</span><span class="swatch-hex">#7548cc</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-700)"></div><span class="swatch-label">accent-700</span><span class="swatch-hex">#5a35a8</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-800)"></div><span class="swatch-label">accent-800</span><span class="swatch-hex">#3f247a</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--accent-900)"></div><span class="swatch-label">accent-900</span><span class="swatch-hex">#25144d</span></div>
+    </div>
+  </div>
+
+  <div class="color-group">
+    <h3>Semantic</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-block" style="background:var(--success-100)"></div><span class="swatch-label">success-100</span><span class="swatch-hex">#DCFCE7</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--success-500)"></div><span class="swatch-label">success-500</span><span class="swatch-hex">#22C55E</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--warning-100)"></div><span class="swatch-label">warning-100</span><span class="swatch-hex">#FEF3C7</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--warning-500)"></div><span class="swatch-label">warning-500</span><span class="swatch-hex">#F59E0B</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--error-100)"></div><span class="swatch-label">error-100</span><span class="swatch-hex">#FEE2E2</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--error-500)"></div><span class="swatch-label">error-500</span><span class="swatch-hex">#EF4444</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--info-100)"></div><span class="swatch-label">info-100</span><span class="swatch-hex">#DBEAFE</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--info-500)"></div><span class="swatch-label">info-500</span><span class="swatch-hex">#3B82F6</span></div>
+    </div>
+  </div>
+
+  <div class="color-group">
+    <h3>Neutral</h3>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-0); border: 1px solid var(--neutral-200)"></div><span class="swatch-label">neutral-0</span><span class="swatch-hex">#FFFFFF</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-50)"></div><span class="swatch-label">neutral-50</span><span class="swatch-hex">#F9FAFB</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-100)"></div><span class="swatch-label">neutral-100</span><span class="swatch-hex">#F3F4F6</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-200)"></div><span class="swatch-label">neutral-200</span><span class="swatch-hex">#E5E7EB</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-300)"></div><span class="swatch-label">neutral-300</span><span class="swatch-hex">#D1D5DB</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-400)"></div><span class="swatch-label">neutral-400</span><span class="swatch-hex">#9CA3AF</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-500)"></div><span class="swatch-label">neutral-500</span><span class="swatch-hex">#6B7280</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-600)"></div><span class="swatch-label">neutral-600</span><span class="swatch-hex">#4B5563</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-700)"></div><span class="swatch-label">neutral-700</span><span class="swatch-hex">#374151</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-800)"></div><span class="swatch-label">neutral-800</span><span class="swatch-hex">#1F2937</span></div>
+      <div class="swatch"><div class="swatch-block" style="background:var(--neutral-900)"></div><span class="swatch-label">neutral-900</span><span class="swatch-hex">#111827</span></div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <h2>Typography — Poppins</h2>
+
+  <div class="type-row">
+    <div class="type-meta"><strong>text-5xl / Bold</strong>48px · 52px · 700</div>
+    <span style="font-size:48px;font-weight:700;line-height:52px;color:var(--neutral-900)">Hero Heading</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-4xl / Bold</strong>36px · 40px · 700</div>
+    <span style="font-size:36px;font-weight:700;line-height:40px;color:var(--neutral-900)">Page Heading</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-3xl / Bold</strong>30px · 36px · 700</div>
+    <span style="font-size:30px;font-weight:700;line-height:36px;color:var(--neutral-900)">Section Heading</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-2xl / SemiBold</strong>24px · 32px · 600</div>
+    <span style="font-size:24px;font-weight:600;line-height:32px;color:var(--neutral-800)">Page Subheading</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-xl / SemiBold</strong>20px · 30px · 600</div>
+    <span style="font-size:20px;font-weight:600;line-height:30px;color:var(--neutral-800)">Section Subheading</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-lg / Medium</strong>18px · 28px · 500</div>
+    <span style="font-size:18px;font-weight:500;line-height:28px;color:var(--neutral-700)">Card Title / Lead Text</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-base / Regular</strong>16px · 24px · 400</div>
+    <span style="font-size:16px;font-weight:400;line-height:24px;color:var(--neutral-600)">Body copy — the default text size for all UI content and descriptions.</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-sm / Regular</strong>14px · 20px · 400</div>
+    <span style="font-size:14px;font-weight:400;line-height:20px;color:var(--neutral-500)">Supporting text, captions, helper messages, input descriptions.</span>
+  </div>
+  <div class="type-row">
+    <div class="type-meta"><strong>text-xs / Medium</strong>12px · 16px · 500</div>
+    <span style="font-size:12px;font-weight:500;line-height:16px;color:var(--neutral-400)">Labels · Badges · Fine print</span>
+  </div>
+
+  <!-- SPACING -->
+  <h2>Spacing Scale</h2>
+  <div class="spacing-grid">
+    <div class="spacing-row"><div class="spacing-block" style="width:4px"></div><span class="spacing-meta"><strong>space-1</strong>4px — micro gaps</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:8px"></div><span class="spacing-meta"><strong>space-2</strong>8px — tight inline</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:12px"></div><span class="spacing-meta"><strong>space-3</strong>12px — small padding</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:16px"></div><span class="spacing-meta"><strong>space-4</strong>16px — default input padding</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:20px"></div><span class="spacing-meta"><strong>space-5</strong>20px — comfortable padding</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:24px"></div><span class="spacing-meta"><strong>space-6</strong>24px — card padding, section gaps</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:32px"></div><span class="spacing-meta"><strong>space-8</strong>32px — large card padding</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:40px"></div><span class="spacing-meta"><strong>space-10</strong>40px — component vertical rhythm</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:48px"></div><span class="spacing-meta"><strong>space-12</strong>48px — section-level spacing</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:64px"></div><span class="spacing-meta"><strong>space-16</strong>64px — major section separators</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:80px"></div><span class="spacing-meta"><strong>space-20</strong>80px — hero area padding</span></div>
+    <div class="spacing-row"><div class="spacing-block" style="width:96px"></div><span class="spacing-meta"><strong>space-24</strong>96px — page-level vertical rhythm</span></div>
+  </div>
+
+  <!-- BORDER RADIUS -->
+  <h2>Border Radius</h2>
+  <div class="radius-grid">
+    <div class="radius-item">
+      <div class="radius-block" style="border-radius:4px"></div>
+      <div class="radius-label"><strong>radius-sm</strong>4px · inputs, tags</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-block" style="border-radius:8px"></div>
+      <div class="radius-label"><strong>radius-md</strong>8px · buttons, small cards</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-block" style="border-radius:12px"></div>
+      <div class="radius-label"><strong>radius-lg</strong>12px · standard cards</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-block" style="border-radius:16px"></div>
+      <div class="radius-label"><strong>radius-xl</strong>16px · large cards, modals</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-block" style="border-radius:24px"></div>
+      <div class="radius-label"><strong>radius-2xl</strong>24px · featured cards</div>
+    </div>
+    <div class="radius-item">
+      <div class="radius-block" style="border-radius:9999px; width:80px; height:80px;"></div>
+      <div class="radius-label"><strong>radius-full</strong>9999px · pills, badges</div>
+    </div>
+  </div>
+
+  <!-- SHADOWS -->
+  <h2>Shadows</h2>
+  <div class="shadow-grid">
+    <div class="shadow-item">
+      <div class="shadow-block" style="box-shadow: 0 1px 2px rgba(0,0,0,0.05)"></div>
+      <div class="shadow-label"><strong>shadow-sm</strong>Subtle card lift</div>
+    </div>
+    <div class="shadow-item">
+      <div class="shadow-block" style="box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.06)"></div>
+      <div class="shadow-label"><strong>shadow-md</strong>Cards, dropdowns</div>
+    </div>
+    <div class="shadow-item">
+      <div class="shadow-block" style="box-shadow: 0 10px 15px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04)"></div>
+      <div class="shadow-label"><strong>shadow-lg</strong>Modals, overlays</div>
+    </div>
+    <div class="shadow-item">
+      <div class="shadow-block" style="box-shadow: 0 20px 25px rgba(0,0,0,0.10), 0 8px 10px rgba(0,0,0,0.04)"></div>
+      <div class="shadow-label"><strong>shadow-xl</strong>Drawers, command palettes</div>
+    </div>
+  </div>
+
+  <!-- COMPONENTS PREVIEW -->
+  <h2>Component Samples</h2>
+
+  <h3>Buttons</h3>
+  <div class="component-row">
+    <button class="btn btn-primary">Primary Action</button>
+    <button class="btn btn-secondary">Secondary Action</button>
+    <button class="btn btn-accent">Accent Action</button>
+    <button class="btn btn-outline">Outline</button>
+    <button class="btn btn-ghost">Ghost</button>
+  </div>
+
+  <h3 style="margin-top:32px">Pills & Badges</h3>
+  <div class="component-row">
+    <span class="pill" style="background:var(--primary-100);color:var(--primary-700)">Clean ✓</span>
+    <span class="pill" style="background:var(--error-100);color:var(--error-500)">Not Clean</span>
+    <span class="pill" style="background:var(--warning-100);color:var(--warning-500)">Review</span>
+    <span class="pill" style="background:var(--accent-100);color:var(--accent-600)">Personal Care</span>
+    <span class="pill" style="background:var(--secondary-100);color:var(--secondary-600)">Home Cleaning</span>
+    <span class="pill" style="background:var(--neutral-100);color:var(--neutral-600)">Saved</span>
+  </div>
+
+  <h3 style="margin-top:32px">Semantic State Chips</h3>
+  <div class="component-row">
+    <span class="chip" style="background:var(--success-100);color:var(--success-500)">
+      <span class="chip-dot" style="background:var(--success-500)"></span> Clean Assessment
+    </span>
+    <span class="chip" style="background:var(--error-100);color:var(--error-500)">
+      <span class="chip-dot" style="background:var(--error-500)"></span> Not Clean
+    </span>
+    <span class="chip" style="background:var(--warning-100);color:var(--warning-500)">
+      <span class="chip-dot" style="background:var(--warning-500)"></span> Mixed Ingredients
+    </span>
+    <span class="chip" style="background:var(--info-100);color:var(--info-500)">
+      <span class="chip-dot" style="background:var(--info-500)"></span> Analyzing…
+    </span>
+  </div>
+
+  <div style="margin-top:96px;padding-top:32px;border-top:1px solid var(--neutral-200);font-size:12px;color:var(--neutral-400)">
+    Generated by /design-system-generator · Clean Shopper v1.0 · 2026-04-06
+  </div>
+
+</body>
+</html>

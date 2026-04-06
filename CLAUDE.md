@@ -32,4 +32,6 @@ Single-user app. No authentication in V1. Local state plus Supabase for data per
 - Component library: See /docs/component-spec.md -- use existing components before creating new ones
 - Build plan: See /docs/build-plan.md -- build phase by phase, do not jump ahead
 - Project context: See /docs/project-context.md -- full project intake and design decisions
+- Design system: See /docs/design-system.md -- apply all colors, typography, spacing, radius, and shadow tokens from this spec. Never hardcode a hex value; always use the token name from tailwind.config.js.
 - Prompt optimizer: See ~/.claude/skills/prompt-optimizer/SKILL.md -- use /prompt-optimizer to evaluate and refine instructions before sending them.
+- Design system generator: See .claude/skills/design-system-generator/SKILL.md -- use /design-system-generator to run a brand interview and produce design tokens and a visual style guide.
