@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ─── Primary — Forest Green ─── */
+  --color-primary-50: #f0f9f4;
+  --color-primary-100: #d9f0e5;
+  --color-primary-200: #b3e0cb;
+  --color-primary-300: #7fc9a7;
+  --color-primary-400: #4aad82;
+  --color-primary-500: #2D6A4F;
+  --color-primary-600: #245a42;
+  --color-primary-700: #1c4835;
+  --color-primary-800: #133628;
+  --color-primary-900: #0a2419;
+
+  /* ─── Secondary — Electric Tangerine ─── */
+  --color-secondary-50: #fff4ef;
+  --color-secondary-100: #ffe5d6;
+  --color-secondary-200: #ffcbac;
+  --color-secondary-300: #ffa878;
+  --color-secondary-400: #ff8550;
+  --color-secondary-500: #FF6B35;
+  --color-secondary-600: #e55520;
+  --color-secondary-700: #c0421a;
+  --color-secondary-800: #8f3013;
+  --color-secondary-900: #5c1e0b;
+
+  /* ─── Accent — Soft Lilac ─── */
+  --color-accent-50: #f7f3fe;
+  --color-accent-100: #ede5fc;
+  --color-accent-200: #d9c9f9;
+  --color-accent-300: #c0a8f4;
+  --color-accent-400: #a882ee;
+  --color-accent-500: #9063E8;
+  --color-accent-600: #7548cc;
+  --color-accent-700: #5a35a8;
+  --color-accent-800: #3f247a;
+  --color-accent-900: #25144d;
+
+  /* ─── Semantic ─── */
+  --color-success-100: #DCFCE7;
+  --color-success-500: #22C55E;
+  --color-warning-100: #FEF3C7;
+  --color-warning-500: #F59E0B;
+  --color-error-100: #FEE2E2;
+  --color-error-500: #EF4444;
+  --color-info-100: #DBEAFE;
+  --color-info-500: #3B82F6;
+
+  /* ─── Neutral ─── */
+  --color-neutral-0: #FFFFFF;
+  --color-neutral-50: #F9FAFB;
+  --color-neutral-100: #F3F4F6;
+  --color-neutral-200: #E5E7EB;
+  --color-neutral-300: #D1D5DB;
+  --color-neutral-400: #9CA3AF;
+  --color-neutral-500: #6B7280;
+  --color-neutral-600: #4B5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1F2937;
+  --color-neutral-900: #111827;
+
+  /* ─── Typography ─── */
+  --font-sans: 'Poppins', sans-serif;
+
+  --text-xs-size: 12px;
+  --text-xs-leading: 16px;
+  --text-xs-weight: 400;
+
+  --text-sm-size: 14px;
+  --text-sm-leading: 20px;
+  --text-sm-weight: 400;
+
+  --text-base-size: 16px;
+  --text-base-leading: 24px;
+  --text-base-weight: 400;
+
+  --text-lg-size: 18px;
+  --text-lg-leading: 28px;
+  --text-lg-weight: 500;
+
+  --text-xl-size: 20px;
+  --text-xl-leading: 30px;
+  --text-xl-weight: 600;
+
+  --text-2xl-size: 24px;
+  --text-2xl-leading: 32px;
+  --text-2xl-weight: 600;
+
+  --text-3xl-size: 30px;
+  --text-3xl-leading: 36px;
+  --text-3xl-weight: 700;
+
+  --text-4xl-size: 36px;
+  --text-4xl-leading: 40px;
+  --text-4xl-weight: 700;
+
+  --text-5xl-size: 48px;
+  --text-5xl-leading: 52px;
+  --text-5xl-weight: 700;
+
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ─── Spacing ─── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ─── Border Radius ─── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.04);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.10), 0 8px 10px rgba(0,0,0,0.04);
+}
