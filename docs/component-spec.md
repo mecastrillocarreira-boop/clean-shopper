@@ -1,4 +1,4 @@
-# Clean Shopper — Component Specification
+-guest# Clean Shopper — Component Specification
 **Version:** 1.0
 **Date:** 2026-04-07
 
