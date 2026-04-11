@@ -91,7 +91,7 @@ px-6 py-3 (md) — same size scale as above
 | `helperText` | `string` | No | Supporting text below the input |
 | `errorMessage` | `string` | No | Replaces helperText when in error state |
 | `disabled` | `boolean` | No (default: `false`) | Disables interaction |
-| `type` | `'text' \| 'email' \| 'url'` | No (default: `'text'`) | HTML input type |
+| `type` | `'text' \| 'email' \| 'url' \| 'password'` | No (default: `'text'`) | HTML input type |
 
 ### Visual Structure
 
