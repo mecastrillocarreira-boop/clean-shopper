@@ -192,6 +192,7 @@ text-neutral-400 flex-shrink-0
 | `status` | `'clean' \| 'caution' \| 'not-clean' \| 'unknown'` | Yes | Drives color and label |
 | `label` | `string` | No | Override the default label text |
 | `size` | `'sm' \| 'md'` | No (default: `'md'`) | Controls padding and font size |
+| `variant` | `'default' \| 'outline'` | No (default: `'default'`) | `default` uses semantic background colors; `outline` uses no background, `border-neutral-300`, `text-neutral-600` |
 
 ### Default Labels by Status
 
@@ -207,16 +208,19 @@ text-neutral-400 flex-shrink-0
 ```
 // Wrapper pill
 <span>
-  inline-flex items-center gap-1 rounded-full font-semibold
+  inline-flex items-center gap-1 rounded-full font-semibold whitespace-nowrap
 
   // sm:  px-2 py-0.5 text-xs
   // md:  px-3 py-1  text-sm
 
-// Status → token mapping
+// variant="default" — status → token mapping
 clean:     bg-success-100 text-success-500    dot: bg-success-500
 caution:   bg-warning-100 text-warning-500    dot: bg-warning-500
 not-clean: bg-error-100   text-error-500      dot: bg-error-500
 unknown:   bg-neutral-100 text-neutral-500    dot: bg-neutral-400
+
+// variant="outline" — all statuses share
+wrapper: border border-neutral-300 text-neutral-600    dot: bg-neutral-400
 
 // Dot (6px circle, always present)
 <span> w-1.5 h-1.5 rounded-full [color from above]
@@ -244,7 +248,7 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 | Prop | Type | Required | Description |
 |---|---|---|---|
 | `label` | `string` | Yes | Tag text |
-| `variant` | `'category' \| 'certification'` | No (default: `'category'`) | Drives color — category uses accent, certification uses primary |
+| `variant` | `'category' \| 'certification' \| 'outline'` | No (default: `'category'`) | Drives color — category uses accent, certification uses primary, outline uses no background with neutral border |
 | `onRemove` | `() => void` | No | If provided, renders an × remove button inside the tag |
 
 ### Visual Structure
@@ -254,8 +258,9 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 <span>
   inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium
 
-  category:     bg-accent-100 text-accent-800
+  category:      bg-accent-100 text-accent-800
   certification: bg-primary-100 text-primary-800
+  outline:       border border-neutral-300 text-neutral-600
 
 // Remove button (only when onRemove is provided)
 <button> ml-1 text-current opacity-60 hover:opacity-100 focus:outline-none
@@ -303,28 +308,32 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 // Card wrapper
 <div>
   bg-neutral-0 rounded-lg shadow-md p-6
-  flex flex-col gap-3
+  flex flex-col h-full
   cursor-pointer (when onClick provided) hover:shadow-lg transition-shadow
 
-// Top row: name + SafetyBadge
-<div> flex items-start justify-between gap-2
-  <h3> text-lg font-medium text-neutral-900
-  <SafetyBadge status={safetyStatus} size="sm" />
+  // Main content — grows to push action row to bottom
+  <div> flex flex-col gap-3 flex-1
 
-// Brand + CategoryTag row
-<div> flex items-center gap-2
-  <span> text-sm text-neutral-500         — brand name
-  <CategoryTag label={category} variant="category" />
+    // Top row: name + brand (stacked left) + SafetyBadge (right)
+    <div> flex items-start justify-between gap-2 mb-4
+      <div> flex flex-col gap-0.5
+        <h3> text-lg font-medium text-neutral-900   — product name
+        <span> text-sm text-neutral-500             — brand name
+      <SafetyBadge status={safetyStatus} size="sm" />
 
-// Summary (optional)
-<p> text-sm text-neutral-600 line-clamp-2
+    // Category tag row
+    <div>
+      <CategoryTag label={category} variant="outline" />
 
-// Action row
-<div> flex items-center gap-2 pt-2 border-t border-neutral-200
-  <Button variant="ghost" size="sm" onClick={onSave}>
-    {isSaved ? 'Saved' : 'Save'}
-  <Button variant="secondary" size="sm" onClick={onAddToList}>
-    {isInList ? 'In List' : 'Add to List'}
+    // Summary (optional)
+    <p> text-sm text-neutral-600 line-clamp-2
+
+  // Action row — always pinned to bottom, buttons right-aligned
+  <div> flex items-center justify-end gap-2 mt-4 pt-2 border-t border-neutral-200
+    <Button variant="ghost" size="sm" onClick={onSave}>
+      {isSaved ? 'Saved' : 'Save'}
+    <Button variant="secondary" size="sm" onClick={onAddToList}>
+      {isInList ? 'In List' : 'Add to List'}
 ```
 
 ### States

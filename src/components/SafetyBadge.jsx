@@ -26,15 +26,21 @@ const sizes = {
   md: 'px-3 py-1 text-sm',
 }
 
-function SafetyBadge({ status, label, size = 'md' }) {
+const outlineWrapper = 'border border-neutral-300 text-neutral-600'
+const outlineDot = 'bg-neutral-400'
+
+function SafetyBadge({ status, label, size = 'md', variant = 'default' }) {
   const config = statusConfig[status] ?? statusConfig.unknown
   const displayLabel = label ?? config.label
 
+  const wrapperStyles = variant === 'outline' ? outlineWrapper : config.wrapper
+  const dotStyles = variant === 'outline' ? outlineDot : config.dot
+
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full font-semibold ${sizes[size]} ${config.wrapper}`}
+      className={`inline-flex items-center gap-1 rounded-full font-semibold whitespace-nowrap ${sizes[size]} ${wrapperStyles}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${config.dot}`} />
+      <span className={`w-1.5 h-1.5 rounded-full ${dotStyles}`} />
       {displayLabel}
     </span>
   )

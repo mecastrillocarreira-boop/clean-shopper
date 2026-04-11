@@ -1,6 +1,7 @@
 const variantStyles = {
   category: 'bg-accent-100 text-accent-800',
   certification: 'bg-primary-100 text-primary-800',
+  outline: 'border border-neutral-300 text-neutral-600',
 }
 
 function CategoryTag({ label, variant = 'category', onRemove }) {

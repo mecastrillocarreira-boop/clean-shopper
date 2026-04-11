@@ -26,16 +26,18 @@ function ProductCard({
     >
       {/* Main content — grows to fill available height */}
       <div className="flex flex-col gap-3 flex-1">
-        {/* Top row: name + safety badge */}
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="text-lg font-medium text-neutral-900">{productName}</h3>
+        {/* Top row: name + brand (stacked) + safety badge */}
+        <div className="flex items-start justify-between gap-2 mb-4">
+          <div className="flex flex-col gap-0.5">
+            <h3 className="text-lg font-medium text-neutral-900">{productName}</h3>
+            <span className="text-sm text-neutral-500">{brand}</span>
+          </div>
           <SafetyBadge status={safetyStatus} size="sm" />
         </div>
 
-        {/* Brand + category tag */}
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-neutral-500">{brand}</span>
-          <CategoryTag label={category} variant="category" />
+        {/* Category tag */}
+        <div>
+          <CategoryTag label={category} variant="outline" />
         </div>
 
         {/* Summary */}
@@ -47,7 +49,7 @@ function ProductCard({
       {/* Action row */}
       {hasActions && (
         <div
-          className="flex items-center gap-2 mt-4 pt-2 border-t border-neutral-200"
+          className="flex items-center justify-end gap-2 mt-4 pt-2 border-t border-neutral-200"
           onClick={(e) => e.stopPropagation()}
         >
           {onSave && (
