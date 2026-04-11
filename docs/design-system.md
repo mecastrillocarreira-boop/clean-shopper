@@ -99,9 +99,9 @@ Standard meaning — users must not need to learn new associations.
 |---|---|---|---|---|
 | `text-xs` | 12px | 16px | 400 | Labels, fine print, badges |
 | `text-sm` | 14px | 20px | 400 | Supporting text, captions, helper text |
-| `text-base` | 16px | 24px | 400 | Body copy, default UI text |
+| `text-base` | 16px | 22px | 400 | Body copy, default UI text |
 | `text-lg` | 18px | 28px | 500 | Lead paragraphs, card titles |
-| `text-xl` | 20px | 30px | 600 | Section subheadings |
+| `text-xl` | 20px | 26px | 600 | Section subheadings |
 | `text-2xl` | 24px | 32px | 600 | Page subheadings |
 | `text-3xl` | 30px | 36px | 700 | Section headings |
 | `text-4xl` | 36px | 40px | 700 | Page headings |
@@ -116,6 +116,13 @@ Standard meaning — users must not need to learn new associations.
 | `font-medium` | 500 | Emphasized body, card titles |
 | `font-semibold` | 600 | Subheadings, button labels |
 | `font-bold` | 700 | Headings, CTAs |
+
+### Letter Spacing
+
+| Token | Value | Tailwind class | Usage |
+|---|---|---|---|
+| `tracking-normal` | 0 | `tracking-normal` | Headings, feature titles |
+| `tracking-body` | 0.0125em | `tracking-body` | Body copy (≈0.2px at 16px) |
 
 ---
 
@@ -198,6 +205,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
+      },
+      letterSpacing: {
+        body: '0.0125em',
       },
       borderRadius: {
         sm: '4px', md: '8px', lg: '12px', xl: '16px', '2xl': '24px',

@@ -74,9 +74,9 @@ export const tokens = {
   fontSize: {
     xs:   { size: '12px', lineHeight: '16px', fontWeight: '400' },
     sm:   { size: '14px', lineHeight: '20px', fontWeight: '400' },
-    base: { size: '16px', lineHeight: '24px', fontWeight: '400' },
+    base: { size: '16px', lineHeight: '22px', fontWeight: '400' },
     lg:   { size: '18px', lineHeight: '28px', fontWeight: '500' },
-    xl:   { size: '20px', lineHeight: '30px', fontWeight: '600' },
+    xl:   { size: '20px', lineHeight: '26px', fontWeight: '600' },
     '2xl': { size: '24px', lineHeight: '32px', fontWeight: '600' },
     '3xl': { size: '30px', lineHeight: '36px', fontWeight: '700' },
     '4xl': { size: '36px', lineHeight: '40px', fontWeight: '700' },
@@ -89,6 +89,10 @@ export const tokens = {
     medium:   '500',
     semibold: '600',
     bold:     '700',
+  },
+
+  letterSpacing: {
+    body: '0.0125em',
   },
 
   spacing: {
