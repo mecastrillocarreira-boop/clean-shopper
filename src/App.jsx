@@ -40,9 +40,11 @@ function App() {
     )
   }
 
+  const handleSignOut = () => supabase.auth.signOut()
+
   return (
     <div className="min-h-screen bg-neutral-50">
-      <NavBar activeView={activeView} onNavigate={setActiveView} />
+      <NavBar activeView={activeView} onNavigate={setActiveView} onSignOut={handleSignOut} />
       <BrowsePage />
     </div>
   )

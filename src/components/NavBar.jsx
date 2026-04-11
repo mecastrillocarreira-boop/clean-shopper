@@ -5,7 +5,7 @@ const NAV_ITEMS = [
   { id: 'preferences', label: 'Preferences'   },
 ]
 
-export default function NavBar({ activeView, onNavigate }) {
+export default function NavBar({ activeView, onNavigate, onSignOut }) {
   return (
     <nav className="w-full bg-neutral-0 border-b border-neutral-200 shadow-sm px-6 py-4 flex items-center justify-between">
       <span className="text-xl font-bold text-primary-900">Clean Shopper</span>
@@ -27,6 +27,16 @@ export default function NavBar({ activeView, onNavigate }) {
             </li>
           )
         })}
+        {onSignOut && (
+          <li>
+            <button
+              onClick={onSignOut}
+              className="text-sm font-medium text-neutral-400 hover:text-error-500 transition-colors"
+            >
+              Sign Out
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   )
