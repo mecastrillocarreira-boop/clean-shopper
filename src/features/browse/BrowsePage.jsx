@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import ProductCard from '../../components/ProductCard'
+import SearchBar from '../../components/SearchBar'
+import EmptyState from '../../components/EmptyState'
 import { fetchProducts } from '../../lib/api/products'
 
 function BrowsePage() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('All')
   const [savedIds, setSavedIds] = useState(new Set())
   const [listIds, setListIds] = useState(new Set())
@@ -33,19 +36,37 @@ function BrowsePage() {
 
   const categories = ['All', ...new Set(products.map((p) => p.category))]
 
-  const filtered =
-    activeCategory === 'All'
-      ? products
-      : products.filter((p) => p.category === activeCategory)
+  const filtered = products
+    .filter((p) => activeCategory === 'All' || p.category === activeCategory)
+    .filter((p) => {
+      const q = searchQuery.trim().toLowerCase()
+      if (!q) return true
+      return (
+        p.name.toLowerCase().includes(q) ||
+        p.brand.toLowerCase().includes(q) ||
+        p.description?.toLowerCase().includes(q)
+      )
+    })
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-8">
       {/* Page header */}
-      <div className="mb-6">
+      <div className="mb-8">
         <h1 className="text-3xl font-bold text-neutral-900">Browse Products</h1>
         <p className="text-base text-neutral-500 mt-1">
-          Search results and AI safety assessments appear here.
+          Find home and personal care products and see their ingredient safety assessment.
         </p>
+      </div>
+
+      {/* Search input */}
+      <div className="mb-8">
+        <SearchBar
+          value={searchQuery}
+          onChange={setSearchQuery}
+          onSubmit={() => {}}
+          placeholder="Search by product name, brand, or ingredient..."
+          disabled={loading}
+        />
       </div>
 
       {/* Category filter */}
@@ -79,28 +100,47 @@ function BrowsePage() {
         <p className="text-sm text-error-500">Failed to load products: {error}</p>
       )}
 
+      {/* Loading skeletons */}
+      {loading && (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="bg-neutral-100 animate-pulse rounded-lg h-56" />
+          ))}
+        </div>
+      )}
+
+      {/* No results */}
+      {!loading && filtered.length === 0 && (
+        <EmptyState
+          heading="No products found"
+          body={
+            searchQuery.trim()
+              ? `No results for "${searchQuery}". Try a different name, brand, or ingredient.`
+              : 'No products in this category yet.'
+          }
+        />
+      )}
+
       {/* Product grid */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {loading
-          ? Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="bg-neutral-100 animate-pulse rounded-lg h-56" />
-            ))
-          : filtered.map((product) => (
-              <ProductCard
-                key={product.id}
-                productName={product.name}
-                brand={product.brand}
-                category={product.category}
-                safetyStatus="unknown"
-                summary={product.description}
-                isSaved={savedIds.has(product.id)}
-                isInList={listIds.has(product.id)}
-                onSave={() => toggleSaved(product.id)}
-                onAddToList={() => toggleList(product.id)}
-                onClick={() => console.log('open detail', product.id)}
-              />
-            ))}
-      </div>
+      {!loading && filtered.length > 0 && (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((product) => (
+            <ProductCard
+              key={product.id}
+              productName={product.name}
+              brand={product.brand}
+              category={product.category}
+              safetyStatus="unknown"
+              summary={product.description}
+              isSaved={savedIds.has(product.id)}
+              isInList={listIds.has(product.id)}
+              onSave={() => toggleSaved(product.id)}
+              onAddToList={() => toggleList(product.id)}
+              onClick={() => console.log('open detail', product.id)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

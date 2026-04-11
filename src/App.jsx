@@ -3,7 +3,7 @@ import NavBar from './components/NavBar'
 import BrowsePage from './features/browse/BrowsePage'
 
 function App() {
-  const [activeView, setActiveView] = useState('search')
+  const [activeView, setActiveView] = useState('browse')
 
   return (
     <div className="min-h-screen bg-neutral-50">

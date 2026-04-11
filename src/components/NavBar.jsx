@@ -1,5 +1,5 @@
 const NAV_ITEMS = [
-  { id: 'search',      label: 'Search'        },
+  { id: 'browse',      label: 'Browse'        },
   { id: 'library',     label: 'Library'       },
   { id: 'list',        label: 'Shopping List' },
   { id: 'preferences', label: 'Preferences'   },
