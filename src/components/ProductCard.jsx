@@ -19,32 +19,35 @@ function ProductCard({
   return (
     <div
       className={[
-        'bg-neutral-0 rounded-lg shadow-md p-6 flex flex-col gap-3',
+        'bg-neutral-0 rounded-lg shadow-md p-6 flex flex-col h-full',
         onClick ? 'cursor-pointer hover:shadow-lg transition-shadow' : '',
       ].join(' ')}
       onClick={onClick}
     >
-      {/* Top row: name + safety badge */}
-      <div className="flex items-start justify-between gap-2">
-        <h3 className="text-lg font-medium text-neutral-900">{productName}</h3>
-        <SafetyBadge status={safetyStatus} size="sm" />
-      </div>
+      {/* Main content — grows to fill available height */}
+      <div className="flex flex-col gap-3 flex-1">
+        {/* Top row: name + safety badge */}
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="text-lg font-medium text-neutral-900">{productName}</h3>
+          <SafetyBadge status={safetyStatus} size="sm" />
+        </div>
 
-      {/* Brand + category tag */}
-      <div className="flex items-center gap-2">
-        <span className="text-sm text-neutral-500">{brand}</span>
-        <CategoryTag label={category} variant="category" />
-      </div>
+        {/* Brand + category tag */}
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-neutral-500">{brand}</span>
+          <CategoryTag label={category} variant="category" />
+        </div>
 
-      {/* Summary */}
-      {summary && (
-        <p className="text-sm text-neutral-600 line-clamp-2">{summary}</p>
-      )}
+        {/* Summary */}
+        {summary && (
+          <p className="text-sm text-neutral-600 line-clamp-2">{summary}</p>
+        )}
+      </div>
 
       {/* Action row */}
       {hasActions && (
         <div
-          className="flex items-center gap-2 pt-2 border-t border-neutral-200"
+          className="flex items-center gap-2 mt-4 pt-2 border-t border-neutral-200"
           onClick={(e) => e.stopPropagation()}
         >
           {onSave && (
