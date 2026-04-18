@@ -68,7 +68,7 @@ px-6 py-3 (md) — same size scale as above
 ### Usage Rules
 
 - Use **primary** for the single most important action on a view (e.g., Run Search, Save Product).
-- Use **secondary** for supporting CTAs that appear alongside a primary button (e.g., Add to List).
+- Use **secondary** for supporting CTAs that appear alongside a primary button.
 - Use **ghost** for low-emphasis actions like Cancel or Clear.
 - Never place two primary buttons side-by-side. If two actions are equal weight, make one secondary.
 - Do not use Button for navigation — use NavBar links instead.
@@ -285,7 +285,7 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 
 ## ProductCard
 
-**Purpose:** Displays a single product with its name, brand, safety assessment, category, and actions (save to library, add to shopping list).
+**Purpose:** Displays a single product with its name, brand, safety assessment, category, and actions (save to library).
 
 ### Props
 
@@ -297,9 +297,7 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 | `safetyStatus` | `'clean' \| 'caution' \| 'not-clean' \| 'unknown'` | Yes | Passed to SafetyBadge |
 | `summary` | `string` | No | One- or two-sentence AI-generated assessment summary |
 | `isSaved` | `boolean` | No (default: `false`) | Controls saved/unsaved state of the save action |
-| `isInList` | `boolean` | No (default: `false`) | Controls added/not-added state of the list action |
 | `onSave` | `() => void` | No | Called when the user saves/unsaves the product |
-| `onAddToList` | `() => void` | No | Called when the user adds/removes from shopping list |
 | `onClick` | `() => void` | No | Called when the card body is clicked (opens detail view) |
 
 ### Visual Structure
@@ -332,8 +330,6 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
   <div> flex items-center justify-end gap-2 mt-4 pt-2 border-t border-neutral-200
     <Button variant="ghost" size="sm" onClick={onSave}>
       {isSaved ? 'Saved' : 'Save'}
-    <Button variant="secondary" size="sm" onClick={onAddToList}>
-      {isInList ? 'In List' : 'Add to List'}
 ```
 
 ### States
@@ -342,7 +338,6 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 |---|---|
 | Default | Full card with all content |
 | Saved (`isSaved=true`) | Save button reads "Saved" with `text-primary-500` |
-| In list (`isInList=true`) | Add to List button reads "In List" |
 | Hover | `shadow-lg` transition when `onClick` is provided |
 | Loading | Render skeleton: `bg-neutral-100 animate-pulse rounded-lg` blocks in place of text and badges |
 
@@ -350,7 +345,7 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 
 - Use ProductCard in: Search results, Saved Library, Shopping List.
 - Always render SafetyBadge — pass `status="unknown"` when assessment is pending, not absent.
-- If `onSave` and `onAddToList` are not provided (e.g., read-only contexts), omit the action row.
+- If `onSave` is not provided (e.g., read-only contexts), omit the action row.
 - Do not inline product detail content into ProductCard — use a separate detail view triggered by `onClick`.
 - For loading skeleton states, render a fixed-height `bg-neutral-100 animate-pulse rounded-lg` block at the same card dimensions — do not render a partial card.
 
