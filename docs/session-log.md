@@ -125,3 +125,30 @@
 - Build AI ingredient analysis feature (Phase 3) — Claude API → safety assessments → populate SafetyBadge
 - Wire up Library, Shopping List, and Preferences pages
 - Build Library page (saved products, persisted to Supabase)
+
+---
+
+## Session — 2026-04-18 (ProductCard Visual Refinements)
+
+### What we built or changed
+- **`src/components/ProductCard.jsx`** — three visual changes to the card layout:
+  - Image background changed from `bg-neutral-50` to `bg-neutral-0` (matches card background)
+  - Image height increased from `h-40` (160px) to `h-52` (208px) for more breathing room
+  - SafetyBadge moved out of the main content row and into its own right-aligned row (`flex justify-end mb-3`) above the image — no longer inline with the product name/brand
+- **`docs/component-spec.md`** — ProductCard visual structure updated to reflect all three changes
+
+### Decisions made
+- **SafetyBadge above the image, not overlaid on it:** User tried overlay (absolute positioning on the image) and a row inside the main content area; settled on a dedicated row above the image. This keeps the badge visible without obscuring the product image and preserves the card's padding and gap rhythm.
+- **`h-52` as the balanced image height:** Up from `h-40`. Gives the product image more prominence without dominating the card.
+
+### Problems encountered and solutions
+- **Three rounds of iteration on SafetyBadge placement:** Overlay on image was rejected (user didn't want overlap); a right-aligned row inside the content area was rejected (user wanted it out of content); a row above the image outside the card padding was rejected; final accepted position is a right-aligned row between the card top edge and the image, inside the card's `p-6` padding.
+
+### Next steps
+- Collect remaining image URLs and re-run the update script for any products still showing null
+- Build AI ingredient analysis feature (Phase 3) — Claude API → safety assessments → populate SafetyBadge with real data
+- Wire up Library, Shopping List, and Preferences pages
+- Build Library page (saved products, persisted to Supabase)
+
+### Prompt patterns worth reusing
+- "Propose me with a balanced [value]" — prompts Claude to suggest a reasoned default rather than asking the user to pick a number cold

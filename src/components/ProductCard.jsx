@@ -31,23 +31,24 @@ function ProductCard({
       ].join(' ')}
       onClick={onClick}
     >
+      <div className="flex justify-end mb-3">
+        <SafetyBadge status={safetyStatus} size="sm" />
+      </div>
+
       {imageUrl && (
         <img
           src={imageUrl}
           alt={productName}
-          className="w-full h-40 object-contain rounded-md mb-4 bg-neutral-50"
+          className="w-full h-52 object-contain rounded-md mb-4 bg-neutral-0"
         />
       )}
 
       {/* Main content — flex-1 makes this section grow to push actions to the bottom */}
       <div className="flex flex-col gap-3 flex-1">
-        {/* Top row: name + brand (stacked) + safety badge */}
-        <div className="flex items-start justify-between gap-2 mb-4">
-          <div className="flex flex-col gap-0.5">
-            <h3 className="text-lg font-medium text-neutral-900">{productName}</h3>
-            <span className="text-sm text-neutral-500">{brand}</span>
-          </div>
-          <SafetyBadge status={safetyStatus} size="sm" />
+        {/* Name + brand */}
+        <div className="flex flex-col gap-0.5 mb-2">
+          <h3 className="text-lg font-medium text-neutral-900">{productName}</h3>
+          <span className="text-sm text-neutral-500">{brand}</span>
         </div>
 
         {/* Category tag */}

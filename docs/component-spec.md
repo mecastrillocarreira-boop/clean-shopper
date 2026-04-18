@@ -310,18 +310,20 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
   flex flex-col h-full
   cursor-pointer (when onClick provided) hover:shadow-lg transition-shadow
 
+  // SafetyBadge row — right-aligned, sits above the image outside main content
+  <div> flex justify-end mb-3
+    <SafetyBadge status={safetyStatus} size="sm" />
+
   // Product image (optional — only renders when imageUrl is provided)
-  <img> w-full h-40 object-contain rounded-md mb-4 bg-neutral-50
+  <img> w-full h-52 object-contain rounded-md mb-4 bg-neutral-0
 
   // Main content — grows to push action row to bottom
   <div> flex flex-col gap-3 flex-1
 
-    // Top row: name + brand (stacked left) + SafetyBadge (right)
-    <div> flex items-start justify-between gap-2 mb-4
-      <div> flex flex-col gap-0.5
-        <h3> text-lg font-medium text-neutral-900   — product name
-        <span> text-sm text-neutral-500             — brand name
-      <SafetyBadge status={safetyStatus} size="sm" />
+    // Name + brand (stacked)
+    <div> flex flex-col gap-0.5 mb-2
+      <h3> text-lg font-medium text-neutral-900   — product name
+      <span> text-sm text-neutral-500             — brand name
 
     // Category tag row
     <div>
