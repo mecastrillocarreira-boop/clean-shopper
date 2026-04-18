@@ -174,6 +174,7 @@ function BrowsePage() {
               brand={product.brand}
               category={product.category}
               safetyStatus="unknown"                        // AI assessment not implemented yet
+              imageUrl={product.image_url}
               summary={product.description}
               isSaved={savedIds.has(product.id)}            // True if this product's ID is in the saved set
               isInList={listIds.has(product.id)}

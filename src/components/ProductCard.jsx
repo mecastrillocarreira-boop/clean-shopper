@@ -12,6 +12,7 @@ function ProductCard({
   brand,
   category,
   safetyStatus,
+  imageUrl,
   summary,
   isSaved = false,
   onSave,
@@ -30,6 +31,14 @@ function ProductCard({
       ].join(' ')}
       onClick={onClick}
     >
+      {imageUrl && (
+        <img
+          src={imageUrl}
+          alt={productName}
+          className="w-full h-40 object-contain rounded-md mb-4 bg-neutral-50"
+        />
+      )}
+
       {/* Main content — flex-1 makes this section grow to push actions to the bottom */}
       <div className="flex flex-col gap-3 flex-1">
         {/* Top row: name + brand (stacked) + safety badge */}

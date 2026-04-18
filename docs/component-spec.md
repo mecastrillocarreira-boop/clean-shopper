@@ -295,6 +295,7 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 | `brand` | `string` | Yes | Brand name |
 | `category` | `string` | Yes | Product category label |
 | `safetyStatus` | `'clean' \| 'caution' \| 'not-clean' \| 'unknown'` | Yes | Passed to SafetyBadge |
+| `imageUrl` | `string` | No | Product image URL; renders a square thumbnail at the top of the card |
 | `summary` | `string` | No | One- or two-sentence AI-generated assessment summary |
 | `isSaved` | `boolean` | No (default: `false`) | Controls saved/unsaved state of the save action |
 | `onSave` | `() => void` | No | Called when the user saves/unsaves the product |
@@ -308,6 +309,9 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
   bg-neutral-0 rounded-lg shadow-md p-6
   flex flex-col h-full
   cursor-pointer (when onClick provided) hover:shadow-lg transition-shadow
+
+  // Product image (optional — only renders when imageUrl is provided)
+  <img> w-full h-40 object-contain rounded-md mb-4 bg-neutral-50
 
   // Main content — grows to push action row to bottom
   <div> flex flex-col gap-3 flex-1

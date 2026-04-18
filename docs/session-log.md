@@ -97,3 +97,31 @@
 ### Prompt patterns worth reusing
 - "Update the color tokens to [description]. For [specific token] I want [hex value]. Based on this value, update the rest of the scale." — gives Claude a clear anchor and lets it derive the rest consistently
 - Ending a session with "do the session wrap-up" triggers the full log + doc audit + commit workflow in one step
+
+---
+
+## Session — 2026-04-18 (Product Images)
+
+### What we built or changed
+- **`image_url TEXT` column** added to the Supabase `products` table via SQL Editor (`ALTER TABLE products ADD COLUMN image_url TEXT`)
+- **`scripts/open-amazon-searches.sh`** — opens an Amazon search tab per product in the browser; used to find product image URLs
+- **`scripts/update-product-images.js`** — updates each product row with its image URL; uses `SUPABASE_SERVICE_ROLE_KEY` (not the anon key, which is blocked by RLS)
+- **`src/lib/api/products.js`** — `fetchProducts()` select updated to include `image_url`
+- **`src/components/ProductCard.jsx`** — added `imageUrl` prop; renders `<img>` at top of card (`w-full h-40 object-contain rounded-md bg-neutral-50`) when prop is present
+- **`src/features/browse/BrowsePage.jsx`** — passes `imageUrl={product.image_url}` to each ProductCard
+- **`docs/component-spec.md`** — ProductCard spec updated to document `imageUrl` prop and image visual structure
+
+### Decisions made
+- **External image URLs (Amazon/iHerb CDN), not Supabase Storage:** User collected image URLs directly from product pages rather than downloading and re-hosting. Simpler for a personal app; tradeoff is that URLs can break if the listing changes.
+- **Service role key for seed scripts:** The anon key is blocked by RLS for writes to the `products` table. Seed/admin scripts use `SUPABASE_SERVICE_ROLE_KEY` (stored in `.env`, never committed). The app itself continues to use the anon key.
+- **Image renders only when `imageUrl` is present:** Cards without an image fall back to the existing layout — no placeholder or broken image state needed for a personal app.
+
+### Problems encountered and solutions
+- **Amazon CDN blocks hotlinking:** All Amazon image URLs returned 403 when loaded by the browser. User switched to direct product page image URLs (right-click → copy image address) from Amazon and iHerb, which work.
+- **Update script reported ✓ for all rows but database stayed null:** RLS was silently blocking writes from the anon key — Supabase reports no error, just writes 0 rows. Fixed by switching the script to use the service role key.
+
+### Next steps
+- Collect remaining image URLs and re-run the update script for any products still showing null
+- Build AI ingredient analysis feature (Phase 3) — Claude API → safety assessments → populate SafetyBadge
+- Wire up Library, Shopping List, and Preferences pages
+- Build Library page (saved products, persisted to Supabase)

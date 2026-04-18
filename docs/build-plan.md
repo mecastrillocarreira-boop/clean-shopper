@@ -11,6 +11,7 @@ Design system, component library, and browse screen with live data.
 - [x] Design system visual preview (`design-system-visual.html`)
 - [x] All shared components built: Button, InputField, SearchBar, SafetyBadge, CategoryTag, ProductCard, NavBar, EmptyState
 - [x] Supabase project set up, `products` table created, 20 seed products inserted
+- [x] `image_url TEXT` column added to `products` table; images hosted externally (Amazon/iHerb CDN); `scripts/update-product-images.js` populates URLs via service role key
 - [x] `BrowsePage` — fetches products from Supabase, client-side search + category filtering, skeleton loading, EmptyState on zero results
 - [x] App shell (`App.jsx`) with view-state routing
 
