@@ -353,15 +353,15 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 
 ## NavBar
 
-**Purpose:** Persistent top navigation linking the four main views: Search, Library, Shopping List, and Preferences.
+**Purpose:** Persistent top navigation linking the four main views: Browse, Library, Shopping List, and Preferences. Also renders a Sign Out button when the user is authenticated.
 
 ### Props
 
 | Prop | Type | Required | Description |
 |---|---|---|---|
-| `activeView` | `'search' \| 'library' \| 'list' \| 'preferences'` | Yes | Highlights the current view's nav item |
+| `activeView` | `'browse' \| 'library' \| 'list' \| 'preferences'` | Yes | Highlights the current view's nav item |
 | `onNavigate` | `(view: string) => void` | Yes | Called when a nav item is clicked |
-| `onSignOut` | `() => void` | No | When provided, renders a Sign Out button at the end of the nav row; omit on pages where the user is not authenticated |
+| `onSignOut` | `() => void` | No | When provided, renders a Sign Out button at the end of the nav row; omit on auth pages |
 
 ### Visual Structure
 
@@ -383,6 +383,10 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
     text-sm font-medium
     default:  text-neutral-500 hover:text-primary-500
     active:   text-primary-500 border-b-2 border-primary-500 pb-1
+
+// Sign Out button (rightmost, only when onSignOut prop is provided)
+<button>
+  text-sm font-medium text-neutral-500 hover:text-error-500
 ```
 
 ### States
@@ -399,6 +403,7 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 - The active state is controlled by the parent via `activeView` — NavBar does not manage its own routing state.
 - Do not add icons to nav items in V1 — text labels only.
 - Do not add secondary navigation or dropdowns to NavBar in V1.
+- Auth pages do not render NavBar at all — pass `onSignOut` only from the authenticated app shell.
 
 ---
 
