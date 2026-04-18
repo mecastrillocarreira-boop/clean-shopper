@@ -1,5 +1,12 @@
 import { useState } from 'react'
 
+// Props:
+//   value, onChange — controlled input: value is read from state, onChange writes back to it
+//   onSubmit        — called when the user presses Enter (currently a no-op in BrowsePage —
+//                     filtering happens live on every keystroke via onChange)
+//   placeholder     — hint text shown when the field is empty
+//   loading         — disables the field while data is loading
+//   disabled        — disables the field in other contexts
 function SearchBar({
   value,
   onChange,
@@ -8,9 +15,11 @@ function SearchBar({
   loading = false,
   disabled = false,
 }) {
+  // focused tracks whether the input has keyboard focus so the border can change style.
   const [focused, setFocused] = useState(false)
 
   const handleSubmit = (e) => {
+    // Prevents the browser's default form-submit behaviour (which would reload the page).
     e.preventDefault()
     if (!disabled && !loading) onSubmit()
   }

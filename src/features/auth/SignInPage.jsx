@@ -3,23 +3,28 @@ import { supabase } from '../../lib/supabase'
 import InputField from '../../components/InputField'
 import Button from '../../components/Button'
 
+// Props:
+//   onNavigateToSignUp — callback that switches App.jsx's authView to 'sign-up'
 function SignInPage({ onNavigateToSignUp }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
+  // async/await lets us write asynchronous code (waiting for Supabase) in a
+  // readable top-to-bottom style. `await` pauses until the request completes.
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault()   // Stops the browser from reloading the page on form submit
     setLoading(true)
-    setError(null)
+    setError(null)       // Clear any previous error before retrying
 
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-      setError(error.message)
+      setError(error.message) // Shows the error below the password field via InputField
     }
-    // On success, App.jsx's onAuthStateChange listener detects the new session
+    // On success: no redirect needed — App.jsx's onAuthStateChange fires automatically
+    // and switches session from null to an object, which renders the main app.
     setLoading(false)
   }
 

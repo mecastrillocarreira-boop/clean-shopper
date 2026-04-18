@@ -5,11 +5,23 @@ import SignInPage from './features/auth/SignInPage'
 import SignUpPage from './features/auth/SignUpPage'
 import { supabase } from './lib/supabase'
 
+// App is the root component — the top of the component tree. Every other screen
+// and component lives inside it. Think of it as the "frame" that holds the whole app.
 function App() {
+  // activeView tracks which main screen is shown (browse / library / list / preferences).
   const [activeView, setActiveView] = useState('browse')
-  const [session, setSession] = useState(undefined) // undefined = still loading
+  // session has three meaningful values — this is the auth state machine:
+  //   undefined → Supabase hasn't replied yet (still loading)
+  //   null      → no active session (user is signed out)
+  //   object    → a valid session (user is signed in)
+  const [session, setSession] = useState(undefined)
+  // authView switches between the two unauthenticated screens.
   const [authView, setAuthView] = useState('sign-in')
 
+  // On mount, this effect does two things:
+  // 1. Reads any existing session from Supabase (restores login after page reload).
+  // 2. Subscribes to auth changes (sign-in / sign-out) so the UI updates automatically.
+  // The cleanup function (return) tears down the listener when the component unmounts.
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
@@ -24,6 +36,8 @@ function App() {
     return () => subscription.unsubscribe()
   }, [])
 
+  // State 1: Loading — Supabase hasn't confirmed auth status yet. Show a spinner
+  // rather than flashing the sign-in screen for users who are already signed in.
   if (session === undefined) {
     return (
       <div className="min-h-screen bg-neutral-50 flex items-center justify-center">
@@ -32,6 +46,8 @@ function App() {
     )
   }
 
+  // State 2: Unauthenticated — no session, so show auth screens only.
+  // authView toggles between sign-in and sign-up within this branch.
   if (!session) {
     return authView === 'sign-up' ? (
       <SignUpPage onNavigateToSignIn={() => setAuthView('sign-in')} />
@@ -40,7 +56,10 @@ function App() {
     )
   }
 
+  // State 3: Authenticated — render the full app shell.
   const handleSignOut = () => supabase.auth.signOut()
+  // After sign-out, onAuthStateChange fires above and sets session to null,
+  // which triggers State 2 automatically — no manual navigation needed.
 
   return (
     <div className="min-h-screen bg-neutral-50">

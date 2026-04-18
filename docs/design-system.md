@@ -75,16 +75,16 @@ Standard meaning — users must not need to learn new associations.
 | Token | Value | Usage |
 |---|---|---|
 | `color-neutral-0` | #FFFFFF | Page background, card surfaces |
-| `color-neutral-50` | #F9FAFB | Subtle off-white backgrounds |
-| `color-neutral-100` | #F3F4F6 | Section backgrounds, input fills |
-| `color-neutral-200` | #E5E7EB | Dividers, borders |
-| `color-neutral-300` | #D1D5DB | Disabled borders |
-| `color-neutral-400` | #9CA3AF | Placeholder text |
-| `color-neutral-500` | #6B7280 | Secondary/supporting text |
-| `color-neutral-600` | #4B5563 | Body text |
-| `color-neutral-700` | #374151 | Strong body text |
-| `color-neutral-800` | #1F2937 | Headings |
-| `color-neutral-900` | #111827 | High-contrast headings, primary text |
+| `color-neutral-50` | #f7f3ed | Subtle off-white backgrounds |
+| `color-neutral-100` | #ece8e2 | Section backgrounds, input fills |
+| `color-neutral-200` | #d9d4cc | Dividers, borders |
+| `color-neutral-300` | #c4beb5 | Disabled borders |
+| `color-neutral-400` | #9e968d | Placeholder text |
+| `color-neutral-500` | #74706a | Secondary/supporting text |
+| `color-neutral-600` | #524f4b | Body text |
+| `color-neutral-700` | #3c3a37 | Strong body text |
+| `color-neutral-800` | #252321 | Headings |
+| `color-neutral-900` | #171513 | High-contrast headings, primary text |
 
 ---
 
@@ -198,9 +198,9 @@ module.exports = {
         error:   { 100: '#FEE2E2', 500: '#EF4444' },
         info:    { 100: '#DBEAFE', 500: '#3B82F6' },
         neutral: {
-          0: '#FFFFFF', 50: '#F9FAFB', 100: '#F3F4F6', 200: '#E5E7EB',
-          300: '#D1D5DB', 400: '#9CA3AF', 500: '#6B7280', 600: '#4B5563',
-          700: '#374151', 800: '#1F2937', 900: '#111827',
+          0: '#FFFFFF', 50: '#f7f3ed', 100: '#ece8e2', 200: '#d9d4cc',
+          300: '#c4beb5', 400: '#9e968d', 500: '#74706a', 600: '#524f4b',
+          700: '#3c3a37', 800: '#252321', 900: '#171513',
         },
       },
       fontFamily: {

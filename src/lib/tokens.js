@@ -1,3 +1,8 @@
+// Design token definitions — the single source of truth for all visual values.
+// These are consumed by tailwind.config.js, which maps them to Tailwind utility
+// classes (e.g. `bg-primary-500`, `text-neutral-700`, `rounded-lg`).
+// Never use raw hex values or pixel sizes in components — always use the
+// corresponding Tailwind class so tokens stay in sync across the whole app.
 export const tokens = {
   colors: {
     primary: {

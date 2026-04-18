@@ -1,3 +1,6 @@
+// statusConfig is a lookup object — instead of a chain of if/else checks,
+// we just look up the status key to get the right label and colour classes.
+// This is easier to extend: adding a new status means adding one object here.
 const statusConfig = {
   clean: {
     label: 'Clean',
@@ -26,11 +29,20 @@ const sizes = {
   md: 'px-3 py-1 text-sm',
 }
 
+// Outline variant strips the status colour — used in contexts where the coloured
+// background would clash with the surrounding design.
 const outlineWrapper = 'border border-neutral-300 text-neutral-600'
 const outlineDot = 'bg-neutral-400'
 
+// Props:
+//   status   — 'clean' | 'caution' | 'not-clean' | 'unknown' (controls colour)
+//   label    — optional override for the text; falls back to the status's default label
+//   size     — 'sm' | 'md'
+//   variant  — 'default' (coloured fill) | 'outline' (grey border, no fill)
 function SafetyBadge({ status, label, size = 'md', variant = 'default' }) {
+  // ?? falls back to 'unknown' config if an unrecognised status is passed.
   const config = statusConfig[status] ?? statusConfig.unknown
+  // ?? means "use config.label unless a custom label was explicitly passed."
   const displayLabel = label ?? config.label
 
   const wrapperStyles = variant === 'outline' ? outlineWrapper : config.wrapper

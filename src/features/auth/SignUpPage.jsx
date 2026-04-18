@@ -3,11 +3,14 @@ import { supabase } from '../../lib/supabase'
 import InputField from '../../components/InputField'
 import Button from '../../components/Button'
 
+// Props:
+//   onNavigateToSignIn — callback that switches App.jsx's authView to 'sign-in'
 function SignUpPage({ onNavigateToSignIn }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  // success replaces the form with a confirmation message after sign-up.
   const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e) => {
@@ -20,6 +23,8 @@ function SignUpPage({ onNavigateToSignIn }) {
     if (error) {
       setError(error.message)
     } else {
+      // Supabase sends a confirmation email — we can't auto-sign-in yet,
+      // so we swap the form for a "check your email" message instead.
       setSuccess(true)
     }
     setLoading(false)
@@ -33,6 +38,7 @@ function SignUpPage({ onNavigateToSignIn }) {
           <p className="text-sm text-neutral-500 mt-1">Create your account</p>
         </div>
 
+        {/* Ternary — the ? renders the success message, the : renders the form */}
         {success ? (
           <div className="text-center">
             <p className="text-base text-neutral-700 mb-6">
