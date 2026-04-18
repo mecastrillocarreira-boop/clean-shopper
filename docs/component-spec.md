@@ -366,6 +366,7 @@ SafetyBadge is display-only — no interactive states. The `status` prop drives 
 |---|---|---|---|
 | `activeView` | `'search' \| 'library' \| 'list' \| 'preferences'` | Yes | Highlights the current view's nav item |
 | `onNavigate` | `(view: string) => void` | Yes | Called when a nav item is clicked |
+| `onSignOut` | `() => void` | No | When provided, renders a Sign Out button at the end of the nav row; omit on pages where the user is not authenticated |
 
 ### Visual Structure
 

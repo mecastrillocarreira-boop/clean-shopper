@@ -3,7 +3,7 @@
 ## Project
 Clean Shopper is a personal product research assistant for ingredient-aware consumers. Users search for home and personal care products, get AI-generated clean/not-clean assessments based on ingredient safety data, save products to a personal library organized by category, and build shopping lists.
 
-Single-user app. No authentication in V1. Local state plus Supabase for data persistence.
+Single-user app. Supabase Auth is used for sign-up, sign-in, and sign-out. Local state plus Supabase for data persistence.
 
 ## Tech Stack
 - React (Vite) -- frontend UI
@@ -25,7 +25,7 @@ Single-user app. No authentication in V1. Local state plus Supabase for data per
 - File naming: kebab-case for all non-component files
 
 ## Do Not
-- Do not add user authentication or account features -- V1 is single-user only
+- Do not add multi-user or account management features -- auth is email/password only via Supabase Auth
 - Do not use CSS other than Tailwind
 - Do not add features outside the current build phase without asking first
 - Do not create new components when an existing component in the component library covers the use case
