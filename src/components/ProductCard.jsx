@@ -9,12 +9,10 @@ function ProductCard({
   safetyStatus,
   summary,
   isSaved = false,
-  isInList = false,
   onSave,
-  onAddToList,
   onClick,
 }) {
-  const hasActions = onSave || onAddToList
+  const hasActions = onSave
 
   return (
     <div
@@ -60,11 +58,6 @@ function ProductCard({
               className={isSaved ? 'text-primary-500' : ''}
             >
               {isSaved ? 'Saved' : 'Save'}
-            </Button>
-          )}
-          {onAddToList && (
-            <Button variant="secondary" size="sm" onClick={onAddToList}>
-              {isInList ? 'In List' : 'Add to List'}
             </Button>
           )}
         </div>
